@@ -1,0 +1,6 @@
+<!-- Evita que la compilación para móvil elimine la luz 2D que se crea por código en Graficos.AsegurarLuzGlobal2D -->
+<linker>
+  <assembly fullname="Unity.RenderPipelines.Universal.Runtime" ignoreIfMissing="1">
+    <type fullname="UnityEngine.Rendering.Universal.Light2D" preserve="all" />
+  </assembly>
+</linker>
