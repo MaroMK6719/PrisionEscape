@@ -12,6 +12,7 @@ Repositorio común del equipo: aquí está el **proyecto de Unity completo** con
 
 ```
 Assets/Platybytes/
+├── Comun/               Menú principal y flujo de la partida (escena Menu.unity)
 ├── PressTheButton/      Minijuego de las flechas (script + escena PressTheButton.unity)
 └── RescataLaLlave/      Minijuego del laberinto (scripts + menú del editor)
 ProjectSettings/         Configuración común del proyecto
@@ -22,13 +23,20 @@ Packages/                Paquetes del proyecto (URP, Input System, TextMeshPro..
 
 1. Clona el repositorio:
    ```
-   git clone https://github.com/MaroMK6719/PrisionEscape-Rescata-La-LLave.git
+   git clone https://github.com/MaroMK6719/PrisionEscape.git
    ```
    (o en GitHub Desktop: **File > Clone repository**).
 2. En **Unity Hub**, pulsa **Add > Add project from disk** y elige la carpeta clonada.
 3. Ábrelo y espera a que Unity importe todo (la primera vez tarda unos minutos).
 
-## 2. Probar cada minijuego
+## 2. Jugar la partida completa (menú)
+
+1. La primera vez, pulsa **Platybytes > Menú > Crear escena del menú**. Crea la escena `Menu`, la de Rescata la llave si faltaba, y ordena las escenas de la build: **Menu**, **PressTheButton**, **RescataLaLlave**.
+2. Con la escena `Menu` abierta, pulsa **Play** y después **JUGAR**.
+
+La partida va así: **Press the Button!** → botón «Siguiente prueba» → **Rescata la llave** → vuelta al menú con el resultado. Hay **3 vidas para toda la partida**: cada fallo en las flechas o cada guardia del laberinto quita una. Desde el menú también se puede probar cada minijuego por separado.
+
+## 3. Probar cada minijuego por separado
 
 **Press the Button! (flechas):** abre `Assets/Platybytes/PressTheButton/PressTheButton.unity` y pulsa **Play**.
 
@@ -37,14 +45,14 @@ Packages/                Paquetes del proyecto (URP, Input System, TextMeshPro..
 2. Pon la vista **Game** en horizontal (por ejemplo, **1920x1080**) y pulsa **Play**.
 3. En el ordenador se juega con las flechas o **WASD**; en el móvil, inclinando el teléfono.
 
-## 3. Probar en el móvil (opcional)
+## 4. Probar en el móvil (opcional)
 
 1. En el móvil Android, activa las **Opciones de desarrollador** y la **Depuración USB**, y conéctalo por USB.
 2. En Unity: **File > Build Profiles > Android > Switch Platform**.
-3. En **Scene List**, deja marcada (y primera) la escena que quieras probar.
+3. En **Scene List**, comprueba que `Menu` es la primera escena (o deja primera la que quieras probar sola).
 4. Desmarca **Export Project**, elige tu móvil en **Run Device** y pulsa **Build And Run**.
 
-## 4. Normas para trabajar juntos
+## 5. Normas para trabajar juntos
 
 - **Cada uno trabaja solo en su carpeta** de `Assets/Platybytes/`. No edites la escena ni los scripts de otro minijuego.
 - **Antes de empezar:** `git pull` (o **Fetch origin > Pull origin** en GitHub Desktop).
