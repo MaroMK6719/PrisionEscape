@@ -1,59 +1,63 @@
-# Guía rápida · Rescata la llave
+# Guía rápida · Prison Escape (PLATYBYTES)
 
-Cómo descargar el minijuego **Rescata la llave** y ejecutarlo en Unity en unos 5 minutos.
+Repositorio común del equipo: aquí está el **proyecto de Unity completo** con los minijuegos de *Prison Escape*. Cada minijuego vive en su propia carpeta dentro de `Assets/Platybytes/`.
 
 ## Requisitos
 
-- **Unity 6** (6000.x) con un proyecto de la plantilla **Universal 2D**.
+- **Unity 6000.6.6f1** (la misma versión para todo el equipo, instalada desde Unity Hub).
+- **Git** o **GitHub Desktop**.
 - Para probar en el móvil: módulo **Android Build Support** (con OpenJDK y Android SDK & NDK).
 
-## 1. Descargar
-
-**Opción A · Sin Git:** en la página del repositorio, pulsa el botón verde **Code > Download ZIP** y descomprime el archivo.
-
-**Opción B · Con Git:**
+## Estructura
 
 ```
-git clone https://github.com/MaroMK6719/PrisionEscape-Rescata-La-LLave.git
+Assets/Platybytes/
+├── PressTheButton/      Minijuego de las flechas (script + escena PressTheButton.unity)
+└── RescataLaLlave/      Minijuego del laberinto (scripts + menú del editor)
+ProjectSettings/         Configuración común del proyecto
+Packages/                Paquetes del proyecto (URP, Input System, TextMeshPro...)
 ```
 
-## 2. Copiar al proyecto de Unity
+## 1. Descargar y abrir el proyecto
 
-Copia la carpeta `Assets/Platybytes/RescataLaLlave` **completa y con sus archivos `.meta`** dentro de la carpeta `Assets/Platybytes/` de tu proyecto de Unity (si no existe `Platybytes`, créala). Copia también `Assets/Platybytes.meta` si tu proyecto no lo tiene.
+1. Clona el repositorio:
+   ```
+   git clone https://github.com/MaroMK6719/PrisionEscape-Rescata-La-LLave.git
+   ```
+   (o en GitHub Desktop: **File > Clone repository**).
+2. En **Unity Hub**, pulsa **Add > Add project from disk** y elige la carpeta clonada.
+3. Ábrelo y espera a que Unity importe todo (la primera vez tarda unos minutos).
 
-El resultado tiene que quedar así:
+## 2. Probar cada minijuego
 
-```
-TuProyecto/Assets/Platybytes/RescataLaLlave/Editor/
-TuProyecto/Assets/Platybytes/RescataLaLlave/Scripts/
-TuProyecto/Assets/Platybytes/RescataLaLlave/link.xml
-```
+**Press the Button! (flechas):** abre `Assets/Platybytes/PressTheButton/PressTheButton.unity` y pulsa **Play**.
 
-> No borres los archivos `.meta`: llevan identificadores fijos para que el juego funcione igual en el ordenador de todos.
+**Rescata la llave (laberinto):**
+1. Pulsa **Platybytes > Rescata la llave > Crear escena** en la barra de menús (solo la primera vez).
+2. Pon la vista **Game** en horizontal (por ejemplo, **1920x1080**) y pulsa **Play**.
+3. En el ordenador se juega con las flechas o **WASD**; en el móvil, inclinando el teléfono.
 
-## 3. Ejecutar en el editor
-
-1. Abre el proyecto en Unity y espera a que termine de compilar.
-2. En la barra de menús, pulsa **Platybytes > Rescata la llave > Crear escena**.
-3. Pon la vista **Game** en una resolución horizontal (por ejemplo, **1920x1080**).
-4. Pulsa **Play**.
-
-**Controles en el ordenador:** flechas o **WASD** para inclinar el laberinto.
-
-## 4. Probar en el móvil (opcional)
+## 3. Probar en el móvil (opcional)
 
 1. En el móvil Android, activa las **Opciones de desarrollador** y la **Depuración USB**, y conéctalo por USB.
 2. En Unity: **File > Build Profiles > Android > Switch Platform**.
-3. En **Scene List**, deja marcada solo la escena `RescataLaLlave`.
+3. En **Scene List**, deja marcada (y primera) la escena que quieras probar.
 4. Desmarca **Export Project**, elige tu móvil en **Run Device** y pulsa **Build And Run**.
 
-En el móvil, la bola se mueve **inclinando el teléfono**. La postura con la que lo sujetas al empezar es la posición neutra; el botón **CALIBRAR** la vuelve a tomar.
+## 4. Normas para trabajar juntos
+
+- **Cada uno trabaja solo en su carpeta** de `Assets/Platybytes/`. No edites la escena ni los scripts de otro minijuego.
+- **Antes de empezar:** `git pull` (o **Fetch origin > Pull origin** en GitHub Desktop).
+- **Al terminar:** `git add`, `git commit` y `git push` (o **Commit to main > Push origin**).
+- **No subas archivos desde la web de GitHub:** se salta las subcarpetas y deja todo en la raíz.
+- Sube siempre los archivos **`.meta`** junto a sus archivos. Nunca subas `Library`, `Temp`, `Logs`, `Build` ni `.apk` (el `.gitignore` ya los excluye).
 
 ## Si algo falla
 
 | Problema | Solución |
 | --- | --- |
-| No aparece el menú **Platybytes** | Abre **Window > General > Console** y revisa los errores en rojo. Si hablan de `InputSystem`: **Edit > Project Settings > Player > Active Input Handling > Both**. |
-| Sale «Missing script» | Faltan los `.meta`. Vuelve a copiar la carpeta completa, borra la escena y créala otra vez desde el menú **Platybytes**. |
-| La bola va al revés en el móvil | En `Scripts/RescataLaLlave.cs`, pon `InvertirX` o `InvertirY` a `true`. |
-| El móvil no aparece en **Run Device** | Prueba otro cable USB, pon el USB en modo **Transferencia de archivos** y acepta el aviso de depuración. |
+| Unity avisa de que la versión es distinta | Instala **6000.6.6f1** desde Unity Hub y abre el proyecto con ella. |
+| No aparece el menú **Platybytes** o hay errores de `InputSystem` / `TMPro` | Abre **Window > General > Console**. Si faltan paquetes, comprueba que la carpeta `Packages` está en el repositorio. |
+| Sale «Missing script» | Faltan archivos `.meta`. Haz `git pull` de nuevo y, en Rescata la llave, borra la escena y créala otra vez con el menú **Platybytes**. |
+| La bola del laberinto va al revés en el móvil | En `RescataLaLlave/Scripts/RescataLaLlave.cs`, pon `InvertirX` o `InvertirY` a `true`. |
+| Error al hacer `git push` porque hay cambios nuevos | Haz `git pull` primero y después `git push`. |
